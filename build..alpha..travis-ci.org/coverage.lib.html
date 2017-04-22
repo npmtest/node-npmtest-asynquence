@@ -1,0 +1,242 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for node-npmtest-asynquence/node_modules/asynquence/asq.js</title>
+    <meta charset="utf-8">
+    <style>
+        body, html {
+            margin:0; padding: 0;
+        }
+        body {
+            font-family: Arial, Helvetica;
+            font-size: 10pt;
+        }
+        div.header, div.footer {
+            background: #eee;
+            padding: 1em;
+        }
+        div.header {
+            height: 160px;
+            padding: 0 1em 0 1em;
+            z-index: 100;
+            position: fixed;
+            top: 0;
+            border-bottom: 1px solid #666;
+            width: 100%;
+        }
+        div.footer {
+            border-top: 1px solid #666;
+        }
+        div.body {
+            margin-top: 170px;
+        }
+        div.meta {
+            font-size: 90%;
+            text-align: center;
+        }
+        h1, h2, h3 {
+            font-weight: normal;
+        }
+        h1 {
+            font-size: 12pt;
+        }
+        h2 {
+            font-size: 10pt;
+        }
+        pre {
+            font-family: Menlo, Monaco, Consolas, Courier New, monospace;
+            margin: 0;
+            padding: 0;
+            font-size: 14px;
+            tab-size: 2;
+        }
+
+        div.path { font-size: 110%; }
+        div.path a:link, div.path a:visited { color: #000; }
+        table.coverage { border-collapse: collapse; margin:0; padding: 0 }
+
+        table.coverage td {
+            margin: 0;
+            padding: 0;
+            color: #111;
+            vertical-align: top;
+        }
+        table.coverage td.line-count {
+            width: 50px;
+            text-align: right;
+            padding-right: 5px;
+        }
+        table.coverage td.line-coverage {
+            color: #777 !important;
+            text-align: right;
+            border-left: 1px solid #666;
+            border-right: 1px solid #666;
+        }
+
+        table.coverage td.text {
+        }
+
+        table.coverage td span.cline-any {
+            display: inline-block;
+            padding: 0 5px;
+            width: 40px;
+        }
+        table.coverage td span.cline-neutral {
+            background: #eee;
+        }
+        table.coverage td span.cline-yes {
+            background: #b5d592;
+            color: #999;
+        }
+        table.coverage td span.cline-no {
+            background: #fc8c84;
+        }
+
+        .cstat-yes { color: #111; }
+        .cstat-no { background: #fc8c84; color: #111; }
+        .fstat-no { background: #ffc520; color: #111 !important; }
+        .cbranch-no { background:  yellow !important; color: #111; }
+
+        .cstat-skip { background: #ddd; color: #111; }
+        .fstat-skip { background: #ddd; color: #111 !important; }
+        .cbranch-skip { background: #ddd !important; color: #111; }
+
+        .missing-if-branch {
+            display: inline-block;
+            margin-right: 10px;
+            position: relative;
+            padding: 0 4px;
+            background: black;
+            color: yellow;
+        }
+
+        .skip-if-branch {
+            display: none;
+            margin-right: 10px;
+            position: relative;
+            padding: 0 4px;
+            background: #ccc;
+            color: white;
+        }
+
+        .missing-if-branch .typ, .skip-if-branch .typ {
+            color: inherit !important;
+        }
+
+        .entity, .metric { font-weight: bold; }
+        .metric { display: inline-block; border: 1px solid #333; padding: 0.3em; background: white; }
+        .metric small { font-size: 80%; font-weight: normal; color: #666; }
+
+        div.coverage-summary table { border-collapse: collapse; margin: 3em; font-size: 110%; }
+        div.coverage-summary td, div.coverage-summary table  th { margin: 0; padding: 0.25em 1em; border-top: 1px solid #666; border-bottom: 1px solid #666; }
+        div.coverage-summary th { text-align: left; border: 1px solid #666; background: #eee; font-weight: normal; }
+        div.coverage-summary th.file { border-right: none !important; }
+        div.coverage-summary th.pic { border-left: none !important; text-align: right; }
+        div.coverage-summary th.pct { border-right: none !important; }
+        div.coverage-summary th.abs { border-left: none !important; text-align: right; }
+        div.coverage-summary td.pct { text-align: right; border-left: 1px solid #666; }
+        div.coverage-summary td.abs { text-align: right; font-size: 90%; color: #444; border-right: 1px solid #666; }
+        div.coverage-summary td.file { text-align: right; border-left: 1px solid #666; white-space: nowrap;  }
+        div.coverage-summary td.pic { min-width: 120px !important;  }
+        div.coverage-summary a:link { color: #000; }
+        div.coverage-summary a:visited { color: #333; }
+        div.coverage-summary tfoot td { border-top: 1px solid #666; }
+
+        div.coverage-summary .yui3-datatable-sort-indicator, div.coverage-summary .dummy-sort-indicator {
+            height: 10px;
+            width: 7px;
+            display: inline-block;
+            margin-left: 0.5em;
+        }
+        div.coverage-summary .yui3-datatable-sort-indicator {
+            background: no-repeat scroll 0 0 transparent;
+        }
+        div.coverage-summary .yui3-datatable-sorted .yui3-datatable-sort-indicator {
+            background-position: 0 -20px;
+        }
+        div.coverage-summary .yui3-datatable-sorted-desc .yui3-datatable-sort-indicator {
+            background-position: 0 -10px;
+        }
+
+        .high { background: #b5d592 !important; }
+        .medium { background: #ffe87c !important; }
+        .low { background: #fc8c84 !important; }
+
+        span.cover-fill, span.cover-empty {
+            display:inline-block;
+            border:1px solid #444;
+            background: white;
+            height: 12px;
+        }
+        span.cover-fill {
+            background: #ccc;
+            border-right: 1px solid #444;
+        }
+        span.cover-empty {
+            background: white;
+            border-left: none;
+        }
+        span.cover-full {
+            border-right: none !important;
+        }
+        pre.prettyprint {
+            border: none !important;
+            padding: 0 !important;
+            margin: 0 !important;
+        }
+        .com { color: #999 !important; }
+        .ignore-none { color: #999; font-weight: normal; }
+
+    </style>
+</head>
+<body>
+<div class="header low">
+    <h1 style="font-weight: bold;">
+        <a href="https://github.com/npmtest/node-npmtest-asynquence">npmtest-asynquence (v0.0.1)</a>
+    </h1>
+    <h1>Code coverage report for <span class="entity">node-npmtest-asynquence/node_modules/asynquence/asq.js</span></h1>
+    <h2>
+        
+        Statements: <span class="metric">23.12% <small>(46 / 199)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        
+        
+        Branches: <span class="metric">3.98% <small>(8 / 201)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        
+        
+        Functions: <span class="metric">3.53% <small>(3 / 85)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        
+        
+        Lines: <span class="metric">100% <small>(1 / 1)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        
+        Ignored: <span class="metric"><span class="ignore-none">none</span></span> &nbsp;&nbsp;&nbsp;&nbsp;
+    </h2>
+    <div class="path"><a href="../../../index.html">All files</a> &#187; <a href="index.html">node-npmtest-asynquence/node_modules/asynquence/</a> &#187; asq.js</div>
+</div>
+<div class="body">
+<pre><table class="coverage">
+<tr><td class="line-count">1
+2
+3
+4
+5
+6
+7</td><td class="line-coverage"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">/*! asynquence
+    v0.10.0 (c) Kyle Simpson
+    MIT License: http://getify.mit-license.org
+*/
+!function UMD(e,n,t){"function"==typeof define&amp;&amp;<span class="branch-1 cbranch-no" title="branch not covered" >define.amd?<span class="branch-0 cbranch-no" title="branch not covered" ></span>define(t):</span>"undefined"!=typeof module&amp;&amp;module.exports?module.exports=t():<span class="branch-1 cbranch-no" title="branch not covered" >n[e]=t(e,n)}</span>("ASQ",this,function DEF(e,n){"use strict";function Queue(){<span class="fstat-no" title="function not covered" >function Item(e){<span class="cstat-no" title="statement not covered" ></span>this.fn=e,this.next=void 0}</span>var e,n,r;return{add:<span class="fstat-no" title="function not covered" >function $$add(t){<span class="cstat-no" title="statement not covered" ></span>r=new Item(t),n?n.next=r:e=r,n=r,r=void 0}</span>,drain:<span class="fstat-no" title="function not covered" >function $$drain(){<span class="cstat-no" title="statement not covered" ></span>var r=e;<span class="cstat-no" title="statement not covered" >f</span>or(e=n=t=null;r;)<span class="cstat-no" title="statement not covered" >r.fn(),r=r.next}</span></span>}}<span class="fstat-no" title="function not covered" >function schedule(e){<span class="cstat-no" title="statement not covered" ></span>r.add(e),t||(t=u(r.drain))}<span class="fstat-no" title="function not covered" ></span>function tapSequence(e){<span class="fstat-no" title="function not covered" ></span>function trigger(){<span class="cstat-no" title="statement not covered" ></span>e.seq=createSequence.apply(h,arguments).defer()}<span class="cstat-no" title="statement not covered" ></span>trigger.fail=<span class="fstat-no" title="function not covered" >function $$trigger$fail(){<span class="cstat-no" title="statement not covered" ></span>var n=f.call(arguments);<span class="cstat-no" title="statement not covered" >e</span>.seq=createSequence(<span class="fstat-no" title="function not covered" >function $$create$sequence(e){<span class="cstat-no" title="statement not covered" ></span>e.fail.apply(h,n)}</span>).defer()}</span>,e.seq.val(<span class="fstat-no" title="function not covered" >function $$val(){<span class="cstat-no" title="statement not covered" ></span>return trigger.apply(h,arguments),c.apply(h,arguments)}</span>).or(<span class="fstat-no" title="function not covered" >function $$or(){<span class="cstat-no" title="statement not covered" ></span>trigger.fail.apply(h,arguments)}</span>),e.seq=createSequence(<span class="fstat-no" title="function not covered" >function $$create$sequence(e){<span class="cstat-no" title="statement not covered" ></span>trigger=e}</span>).defer()}<span class="fstat-no" title="function not covered" ></span>function createSequence(){<span class="fstat-no" title="function not covered" ></span>function scheduleSequenceTick(){<span class="cstat-no" title="statement not covered" ></span>r?sequenceTick():e||(e=schedule(sequenceTick))}<span class="fstat-no" title="function not covered" ></span>function throwSequenceErrors(){<span class="cstat-no" title="statement not covered" ></span>throw 1===$.length?$[0]:$}<span class="fstat-no" title="function not covered" ></span>function sequenceTick(){<span class="cstat-no" title="statement not covered" ></span>var a,c;<span class="cstat-no" title="statement not covered" >i</span>f(e=null,delete d.unpause,r)<span class="cstat-no" title="statement not covered" >clearTimeout(e),e=null,s.length=p.length=g.length=$.length=0;e</span>lse <span class="cstat-no" title="statement not covered" >if(n)<span class="cstat-no" title="statement not covered" >for(0!==p.length||t||(t=!0,throwSequenceErrors());p.length;){<span class="cstat-no" title="statement not covered" >t=!0,a=p.shift();<span class="cstat-no" title="statement not covered" >t</span>ry{<span class="cstat-no" title="statement not covered" >a.apply(h,$)}</span>catch(i){<span class="cstat-no" title="statement not covered" >l(i)?$=$.concat(i):($.push(i),i.stack&amp;&amp;$.push(i.stack)),0===p.length&amp;&amp;throwSequenceErrors()}</span>}</span>e</span>lse <span class="cstat-no" title="statement not covered" >if(u&amp;&amp;s.length&gt;0){<span class="cstat-no" title="statement not covered" >u=!1,a=s.shift(),c=g.slice(),g.length=0,c.unshift(createStepCompletion());<span class="cstat-no" title="statement not covered" >t</span>ry{<span class="cstat-no" title="statement not covered" >a.apply(h,c)}</span>catch(i){<span class="cstat-no" title="statement not covered" >l(i)?$=$.concat(i):$.push(i),n=!0,scheduleSequenceTick()}</span>}</span>}<span class="fstat-no" title="function not covered" ></span></span></span>function createStepCompletion(){<span class="fstat-no" title="function not covered" ></span>function done(){<span class="cstat-no" title="statement not covered" ></span>n||r||u||e||(e=!0,u=!0,g.push.apply(g,arguments),$.length=0,scheduleSequenceTick())}<span class="cstat-no" title="statement not covered" ></span>done.fail=<span class="fstat-no" title="function not covered" >function $$step$fail(){<span class="cstat-no" title="statement not covered" ></span>n||r||u||e||(n=!0,g.length=0,$.push.apply($,arguments),scheduleSequenceTick())}</span>,done.abort=<span class="fstat-no" title="function not covered" >function $$step$abort(){<span class="cstat-no" title="statement not covered" ></span>n||r||(u=!1,r=!0,g.length=$.length=0,scheduleSequenceTick())}</span>,done.errfcb=<span class="fstat-no" title="function not covered" >function $$step$errfcb(e){<span class="cstat-no" title="statement not covered" ></span>e?done.fail(e):done.apply(h,f.call(arguments,1))}</span>;<span class="cstat-no" title="statement not covered" >v</span>ar e=!1;<span class="cstat-no" title="statement not covered" >r</span>eturn done}<span class="fstat-no" title="function not covered" ></span>function createGate(e,t,u){<span class="fstat-no" title="function not covered" ></span>function resetGate(){<span class="cstat-no" title="statement not covered" ></span>clearTimeout(s),s=d=m=o=null}<span class="fstat-no" title="function not covered" ></span>function scheduleGateTick(){<span class="cstat-no" title="statement not covered" ></span>return g?gateTick():void(s||(s=schedule(gateTick)))}<span class="fstat-no" title="function not covered" ></span>function gateTick(){<span class="cstat-no" title="statement not covered" ></span>if(!(n||r||$)){<span class="cstat-no" title="statement not covered" >var t=[];<span class="cstat-no" title="statement not covered" >s</span>=null,p?(e.fail.apply(h,o),resetGate()):g?(e.abort(),resetGate()):checkGate()&amp;&amp;($=!0,d.forEach(<span class="fstat-no" title="function not covered" >function $$each(e,n){<span class="cstat-no" title="statement not covered" ></span>t.push(m["s"+n])}</span>),e.apply(h,t),resetGate())}</span>}<span class="fstat-no" title="function not covered" ></span>function checkGate(){<span class="cstat-no" title="statement not covered" ></span>if(0!==d.length){<span class="cstat-no" title="statement not covered" >var e=!0;<span class="cstat-no" title="statement not covered" >r</span>eturn d.some(<span class="fstat-no" title="function not covered" >function $$some(n){<span class="cstat-no" title="statement not covered" ></span>return null===n?(e=!1,!0):void 0}</span>),e}</span>}<span class="fstat-no" title="function not covered" ></span>function createSegmentCompletion(){<span class="fstat-no" title="function not covered" ></span>function done(){<span class="cstat-no" title="statement not covered" ></span>if(!(n||r||p||g||$||d[e])){<span class="cstat-no" title="statement not covered" >var t=c.apply(h,arguments);<span class="cstat-no" title="statement not covered" >m</span>["s"+e]=t.length&gt;1?t:t[0],d[e]=!0,scheduleGateTick()}</span>}<span class="cstat-no" title="statement not covered" ></span>var e=d.length;<span class="cstat-no" title="statement not covered" >r</span>eturn done.fail=<span class="fstat-no" title="function not covered" >function $$segment$fail(){<span class="cstat-no" title="statement not covered" ></span>n||r||p||g||$||d[e]||(p=!0,o=f.call(arguments),scheduleGateTick())}</span>,done.abort=<span class="fstat-no" title="function not covered" >function $$segment$abort(){<span class="cstat-no" title="statement not covered" ></span>n||r||p||g||$||(g=!0,gateTick())}</span>,done.errfcb=<span class="fstat-no" title="function not covered" >function $$segment$errfcb(e){<span class="cstat-no" title="statement not covered" ></span>e?done.fail(e):done.apply(h,f.call(arguments,1))}</span>,d[e]=null,done}<span class="cstat-no" title="statement not covered" ></span>var a,i,o,s,p=!1,g=!1,$=!1,d=[],m={};<span class="cstat-no" title="statement not covered" >t</span>.some(<span class="fstat-no" title="function not covered" >function $$some(e){<span class="cstat-no" title="statement not covered" ></span>if(p||g)<span class="cstat-no" title="statement not covered" >return!0;<span class="cstat-no" title="statement not covered" >a</span></span>=u.slice(),a.unshift(createSegmentCompletion());<span class="cstat-no" title="statement not covered" >t</span>ry{<span class="cstat-no" title="statement not covered" >e.apply(h,a)}</span>catch(n){<span class="cstat-no" title="statement not covered" >return i=n,p=!0,!0}</span>}</span>),i&amp;&amp;(l(i)?e.fail.apply(h,i):e.fail(i))}<span class="fstat-no" title="function not covered" ></span>function then(){<span class="cstat-no" title="statement not covered" ></span>return n||r||0===arguments.length?d:(wrapArgs(arguments,thenWrapper).forEach(<span class="fstat-no" title="function not covered" >function $$each(e){<span class="cstat-no" title="statement not covered" ></span>i(e)?seq(e):s.push(e)}</span>),scheduleSequenceTick(),d)}<span class="fstat-no" title="function not covered" ></span>function or(){<span class="cstat-no" title="statement not covered" ></span>return r||0===arguments.length?d:(p.push.apply(p,arguments),scheduleSequenceTick(),d)}<span class="fstat-no" title="function not covered" ></span>function gate(){<span class="cstat-no" title="statement not covered" ></span>if(n||r||0===arguments.length)<span class="cstat-no" title="statement not covered" >return d;<span class="cstat-no" title="statement not covered" >v</span></span>ar e=f.call(arguments).map(<span class="fstat-no" title="function not covered" >function $$map(e){<span class="cstat-no" title="statement not covered" ></span>var n;<span class="cstat-no" title="statement not covered" >r</span>eturn i(e)?(n={seq:e},tapSequence(n),<span class="fstat-no" title="function not covered" >function $$segment(e){<span class="cstat-no" title="statement not covered" ></span>n.seq.pipe(e)}</span>):e}</span>);<span class="cstat-no" title="statement not covered" >r</span>eturn then(<span class="fstat-no" title="function not covered" >function $$then(n){<span class="cstat-no" title="statement not covered" ></span>var t=f.call(arguments,1);<span class="cstat-no" title="statement not covered" >c</span>reateGate(n,e,t)}</span>),d}<span class="fstat-no" title="function not covered" ></span>function pipe(){<span class="cstat-no" title="statement not covered" ></span>return r||0===arguments.length?d:(f.call(arguments).forEach(<span class="fstat-no" title="function not covered" >function $$each(e){<span class="cstat-no" title="statement not covered" ></span>then(<span class="fstat-no" title="function not covered" >function $$then(n){<span class="cstat-no" title="statement not covered" ></span>e.apply(h,f.call(arguments,1)),n()}</span>).or(e.fail)}</span>),d)}<span class="fstat-no" title="function not covered" ></span>function seq(){<span class="cstat-no" title="statement not covered" ></span>return n||r||0===arguments.length?d:(f.call(arguments).forEach(<span class="fstat-no" title="function not covered" >function $$each(e){<span class="cstat-no" title="statement not covered" ></span>var n={seq:e};<span class="cstat-no" title="statement not covered" >i</span>(e)&amp;&amp;tapSequence(n),then(<span class="fstat-no" title="function not covered" >function $$then(e){<span class="cstat-no" title="statement not covered" ></span>var t=n.seq;<span class="cstat-no" title="statement not covered" >i</span>(t)||(t=n.seq.apply(h,f.call(arguments,1))),t.pipe(e)}</span>)}</span>),d)}<span class="fstat-no" title="function not covered" ></span>function val(){<span class="cstat-no" title="statement not covered" ></span>return n||r||0===arguments.length?d:(f.call(wrapArgs(arguments,valWrapper)).forEach(<span class="fstat-no" title="function not covered" >function $$each(e){<span class="cstat-no" title="statement not covered" ></span>then(<span class="fstat-no" title="function not covered" >function $$then(n){<span class="cstat-no" title="statement not covered" ></span>var t=e.apply(h,f.call(arguments,1));<span class="cstat-no" title="statement not covered" >l</span>(t)||(t=c(t)),n.apply(h,t)}</span>)}</span>),d)}<span class="fstat-no" title="function not covered" ></span>function promise(){<span class="fstat-no" title="function not covered" ></span>function wrap(e){<span class="cstat-no" title="statement not covered" ></span>return <span class="fstat-no" title="function not covered" >function $$fn(){<span class="cstat-no" title="statement not covered" ></span>e.apply(h,l(arguments[0])?arguments[0]:arguments)}</span>}<span class="cstat-no" title="statement not covered" ></span>return n||r||0===arguments.length?d:(f.call(arguments).forEach(<span class="fstat-no" title="function not covered" >function $$each(e){<span class="cstat-no" title="statement not covered" ></span>then(<span class="fstat-no" title="function not covered" >function $$then(n){<span class="cstat-no" title="statement not covered" ></span>var t=e;<span class="cstat-no" title="statement not covered" >"</span>function"==typeof e&amp;&amp;"function"!=typeof e.then&amp;&amp;(t=e.apply(h,f.call(arguments,1))),t.then(wrap(n),wrap(n.fail))}</span>)}</span>),d)}<span class="fstat-no" title="function not covered" ></span>function fork(){<span class="cstat-no" title="statement not covered" ></span>var e;<span class="cstat-no" title="statement not covered" >r</span>eturn val(<span class="fstat-no" title="function not covered" >function $$val(){<span class="cstat-no" title="statement not covered" ></span>return e?e.apply(h,arguments):e=createSequence.apply(h,arguments).defer(),c.apply(h,arguments)}</span>),or(<span class="fstat-no" title="function not covered" >function $$or(){<span class="cstat-no" title="statement not covered" ></span>if(e)<span class="cstat-no" title="statement not covered" >e.fail.apply(h,arguments);e</span>lse{<span class="cstat-no" title="statement not covered" >var n=f.call(arguments);<span class="cstat-no" title="statement not covered" >e</span>=createSequence().then(<span class="fstat-no" title="function not covered" >function $$then(e){<span class="cstat-no" title="statement not covered" ></span>e.fail.apply(h,n)}</span>).defer()}</span>}</span>),createSequence().then(<span class="fstat-no" title="function not covered" >function $$then(n){<span class="cstat-no" title="statement not covered" ></span>e?e.pipe(n):e=n}</span>).defer()}<span class="fstat-no" title="function not covered" ></span>function abort(){<span class="cstat-no" title="statement not covered" ></span>return n?d:(r=!0,sequenceTick(),d)}<span class="fstat-no" title="function not covered" ></span>function duplicate(){<span class="cstat-no" title="statement not covered" ></span>var e;<span class="cstat-no" title="statement not covered" >r</span>eturn a={then_queue:s.slice(),or_queue:p.slice()},e=createSequence(),a=null,e}<span class="fstat-no" title="function not covered" ></span>function unpause(){<span class="cstat-no" title="statement not covered" ></span>g.push.apply(g,arguments),e===!0&amp;&amp;(e=null),scheduleSequenceTick()}<span class="fstat-no" title="function not covered" ></span>function defer(){<span class="cstat-no" title="statement not covered" ></span>return p.push(<span class="fstat-no" title="function not covered" >function ignored(){</span>}),d}<span class="fstat-no" title="function not covered" ></span>function internals(e,t){<span class="cstat-no" title="statement not covered" ></span>var a=arguments.length&gt;1;<span class="cstat-no" title="statement not covered" >s</span>witch(e){case"seq_error":<span class="cstat-no" title="statement not covered" >if(!a)<span class="cstat-no" title="statement not covered" >return n;<span class="cstat-no" title="statement not covered" >n</span></span>=t;<span class="cstat-no" title="statement not covered" >b</span>reak;c</span>ase"seq_aborted":<span class="cstat-no" title="statement not covered" >if(!a)<span class="cstat-no" title="statement not covered" >return r;<span class="cstat-no" title="statement not covered" >r</span></span>=t;<span class="cstat-no" title="statement not covered" >b</span>reak;c</span>ase"then_ready":<span class="cstat-no" title="statement not covered" >if(!a)<span class="cstat-no" title="statement not covered" >return u;<span class="cstat-no" title="statement not covered" >u</span></span>=t;<span class="cstat-no" title="statement not covered" >b</span>reak;c</span>ase"then_queue":<span class="cstat-no" title="statement not covered" >return s;c</span>ase"or_queue":<span class="cstat-no" title="statement not covered" >return p;c</span>ase"sequence_messages":<span class="cstat-no" title="statement not covered" >return g;c</span>ase"sequence_errors":<span class="cstat-no" title="statement not covered" >return $}</span>}<span class="fstat-no" title="function not covered" ></span>function includeExtensions(){<span class="cstat-no" title="statement not covered" ></span>Object.keys(o).forEach(<span class="fstat-no" title="function not covered" >function $$each(e){<span class="cstat-no" title="statement not covered" ></span>d[e]=d[e]||o[e](d,internals)}</span>)}<span class="cstat-no" title="statement not covered" ></span>var e,n=!1,t=!1,r=!1,u=!0,s=[],p=[],g=[],$=[],d=brandIt({then:then,or:or,onerror:or,gate:gate,all:gate,pipe:pipe,seq:seq,val:val,promise:promise,fork:fork,abort:abort,duplicate:duplicate,defer:defer});<span class="cstat-no" title="statement not covered" >r</span>eturn includeExtensions(),a&amp;&amp;(s=a.then_queue.slice(),p=a.or_queue.slice(),d.unpause=unpause,e=!0),d.then.apply(h,arguments),d}<span class="fstat-no" title="function not covered" ></span>function brandIt(e){<span class="cstat-no" title="statement not covered" ></span>return Object.defineProperty(e,p,{enumerable:!1,value:!0})}<span class="fstat-no" title="function not covered" ></span>function checkBranding(e){<span class="cstat-no" title="statement not covered" ></span>return!(null==e||"object"!=typeof e||!e[p])}<span class="fstat-no" title="function not covered" ></span>function valWrapper(e){<span class="cstat-no" title="statement not covered" ></span>return c.apply(h,f.call(arguments).slice(1,e+1))}<span class="fstat-no" title="function not covered" ></span>function thenWrapper(e){<span class="cstat-no" title="statement not covered" ></span>arguments[e+1].apply(h,f.call(arguments).slice(1,e+1))}<span class="fstat-no" title="function not covered" ></span>function wrapArgs(e,n){<span class="cstat-no" title="statement not covered" ></span>var t,r;<span class="cstat-no" title="statement not covered" >f</span>or(e=f.call(e),t=0;t&lt;e.length;t++)<span class="cstat-no" title="statement not covered" >if(l(e[t]))<span class="cstat-no" title="statement not covered" >e[t]=n.bind.apply(n,[null,e[t].length].concat(e[t]));e</span>lse <span class="cstat-no" title="statement not covered" >if("function"!=typeof e[t]&amp;&amp;(n===valWrapper||!i(e[t]))){<span class="cstat-no" title="statement not covered" >for(r=t+1;r&lt;e.length&amp;&amp;("function"!=typeof e[r]&amp;&amp;!checkBranding(e[r]));r++);<span class="cstat-no" title="statement not covered" >e</span>.splice(t,r-t,n.bind.apply(n,[null,r-t].concat(e.slice(t,r))))}<span class="cstat-no" title="statement not covered" ></span>r</span></span></span>eturn e}</span>var t,r,u="undefined"!=typeof setImmediate?<span class="fstat-no" title="function not covered" >function $$timer(e){<span class="cstat-no" title="statement not covered" ></span>return setImmediate(e)}</span>:<span class="branch-1 cbranch-no" title="branch not covered" >setTimeout;</span>r=Queue();var a,c,i,l,o={},s=(n||{})[e],f=[].slice,p="__ASQ__",h=Object.create(null);return createSequence.failed=<span class="fstat-no" title="function not covered" >function $$public$failed(){<span class="cstat-no" title="statement not covered" ></span>var e=c.apply(h,arguments);<span class="cstat-no" title="statement not covered" >r</span>eturn createSequence(<span class="fstat-no" title="function not covered" >function $$failed(){<span class="cstat-no" title="statement not covered" ></span>throw e}</span>).defer()}</span>,createSequence.extend=<span class="fstat-no" title="function not covered" >function $$public$extend(e,n){<span class="cstat-no" title="statement not covered" ></span>return o[e]=n,createSequence}</span>,createSequence.messages=c=<span class="fstat-no" title="function not covered" >function $$public$messages(){<span class="cstat-no" title="statement not covered" ></span>var e=f.call(arguments);<span class="cstat-no" title="statement not covered" >r</span>eturn brandIt(e)}</span>,createSequence.isSequence=i=<span class="fstat-no" title="function not covered" >function $$public$isSequence(e){<span class="cstat-no" title="statement not covered" ></span>return checkBranding(e)&amp;&amp;!Array.isArray(e)}</span>,createSequence.isMessageWrapper=l=<span class="fstat-no" title="function not covered" >function $$public$isMessageWrapper(e){<span class="cstat-no" title="statement not covered" ></span>return checkBranding(e)&amp;&amp;Array.isArray(e)}</span>,createSequence.unpause=<span class="fstat-no" title="function not covered" >function $$public$unpause(e){<span class="cstat-no" title="statement not covered" ></span>return e.unpause&amp;&amp;e.unpause(),e}</span>,createSequence.noConflict=<span class="fstat-no" title="function not covered" >function $$public$noConflict(){<span class="cstat-no" title="statement not covered" ></span>return n&amp;&amp;(n[e]=s),createSequence}</span>,createSequence.clone=<span class="fstat-no" title="function not covered" >function $$public$clone(){<span class="cstat-no" title="statement not covered" ></span>return DEF(e,n)}</span>,createSequence.__schedule=schedule,createSequence.__tapSequence=tapSequence,createSequence});
+&nbsp;
+&nbsp;</pre></td></tr>
+</table></pre>
+</div>
+<div class="footer">
+    <div class="meta">Generated by <a href="https://github.com/kaizhu256/node-utility2" target="_blank">utility2</a> at Sat Apr 22 2017 15:32:32 GMT+0000 (UTC)</div>
+</div>
+</body>
+</html>
